@@ -8,4 +8,6 @@ Using Google OAuth with Passport JS to authenticate users.
 
 Handling payments using Stripe. React + Stripe
 
+All data will be saved in MongoDb
 
+User can see all reports of surveys using MongoDb, Redux and React.
