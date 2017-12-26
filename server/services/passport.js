@@ -30,21 +30,40 @@ passport.use( new GoogleStrategy({
         proxy: true
 
 
-},(accessToken,refreshToken,profile,done)=>{
+},
+async (accessToken,refreshToken,profile,done)=>{     // refactor by Async and Await
+
+    const existingUser = await  User.findOne({googleId:profile.id}) // all transactions to mongodb are async, so we will use promises callback.
+         
+      if(existingUser) {
+                 
+              return  done(null,existingUser); // error, finished object , we are done with passport.
+
+           } 
+           
+      const  user = await  new User({ googleId:profile.id}).save(); // save to database in MongoDB
+        done(null,user);
+            
+  
+    })); // creates a new instance of new passport strategy. it will take parameters of {options, callback func}.
+
+    // OLD CODE
+// (accessToken,refreshToken,profile,done)=>{
 
 // give access us to read profile. expires after sometime.
 // refreshToken can get another access token if old one expires.
-    User.findOne({googleId:profile.id}) // all transactions to mongodb are async, so we will use promises callback.
-        .then((existingUser)=>{
+    // User.findOne({googleId:profile.id}) // all transactions to mongodb are async, so we will use promises callback.
+    //     .then((existingUser)=>{
 
-             if(existingUser){
-                // user already exist lets go to profile.. 
-                done(null,existingUser); // error, finished object , we are done with passport.
-            }else
-                new User({ googleId:profile.id}).save() // save to database in MongoDB
-                .then((user)=>  done(null,existingUser)); // callback to done with passport.
-    })
+    //          if(existingUser){
+    //             // user already exist lets go to profile.. 
+    //             done(null,existingUser); // error, finished object , we are done with passport.
+    //         }else
+    //             new User({ googleId:profile.id}).save() // save to database in MongoDB
+    //             .then((user)=>  done(null,existingUser)); // callback to done with passport.
+    // });
+//}
 
-})); // creates a new instance of new passport strategy. it will take parameters of {options, callback func}.
+
 
 
