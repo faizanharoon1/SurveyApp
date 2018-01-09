@@ -2,6 +2,7 @@ const express= require('express');
 const mongoose = require('mongoose');
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const models=require('./models/User');
 const passportConfig = require('./services/passport');
@@ -10,6 +11,8 @@ const passportConfig = require('./services/passport');
 mongoose.connect(keys.mongoURI);
 
 const app = express();
+
+app.use(bodyParser.json()); // middle ware dealing with POST requests.
 
 app.use( 
     cookieSession({
@@ -22,6 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // passport will know to use cookie for Auth.
 
 require('./routes/authRoutes')(app); // refactored way of calling requiring function in JS
+require('./routes/billingRoutes')(app);
 
 const PORT= process.env.PORT || 5000; // heroku dynamic port binding.
 app.listen(PORT);
