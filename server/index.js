@@ -4,8 +4,9 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
-const models=require('./models/User');
-const passportConfig = require('./services/passport');
+require('./models/User');
+require('./models/Survey');
+require('./services/passport');
 
 
 mongoose.connect(keys.mongoURI);
@@ -26,6 +27,7 @@ app.use(passport.session()); // passport will know to use cookie for Auth.
 
 require('./routes/authRoutes')(app); // refactored way of calling requiring function in JS
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if(process.env.NODE_ENV === 'production'){ // heroku env variable NODE_ENV
 
