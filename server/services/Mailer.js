@@ -59,17 +59,14 @@ const request = this.sgApi.emptyRequest({
     body: this.toJSON()
   });
  
-  this.sgApi.API(request, function(error, response) {
-    // console.log(response.statusCode)
-     console.log(response.body)
-    // console.log(response.headers)
-    return response;
-  })
-
-
-
-
-//const response= this.sgApi.API(request);
+ const response = await  this.sgApi.API(request);
+//     , function(error, response) {
+//     // console.log(response.statusCode)
+//      console.log(response.body)
+//     // console.log(response.headers)
+//     return response;
+//   })
+return response;
 
 
 
