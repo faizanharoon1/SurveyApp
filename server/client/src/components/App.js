@@ -6,9 +6,7 @@ import * as actions from '../actions';
 import Header from './Header'
 import Landing from './Landing';
 import Dashboard from './Dashboard'
-
-
-const SurveyNew = () => <h2>SurveyNew</h2>
+import SurveyNew from './surveys/SurveyNew';
 
 class App extends Component {
 
@@ -22,7 +20,7 @@ class App extends Component {
     render() {
         return (
 
-            <div>
+          
                 <BrowserRouter>
                     <div className="container">
                         <Header/>
@@ -31,7 +29,7 @@ class App extends Component {
                         <Route path="/surveys/new" component ={SurveyNew}/>
                     </div>
                 </BrowserRouter>
-            </div>
+        
 
         );
     }
