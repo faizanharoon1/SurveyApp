@@ -53,19 +53,20 @@ addRecipients(){
 
 async send(){
 
-const request = this.sgApi.emptyRequest({
+ const request = this.sgApi.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
     body: this.toJSON()
   });
  
  const response = await  this.sgApi.API(request);
-//     , function(error, response) {
-//     // console.log(response.statusCode)
-//      console.log(response.body)
-//     // console.log(response.headers)
-//     return response;
-//   })
+    //, function(error, response) {
+    // console.log(response.statusCode)
+   //  console.log(response.body)
+    // console.log(response.headers)
+  //  return response;
+  //})
+
 return response;
 
 
