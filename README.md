@@ -14,4 +14,4 @@ All data will be saved in MongoDb
 
 User can see all reports of surveys using MongoDb, Redux and React.
 
-Amazing 3 months learning experience of indepth ES2016 new syntax and React Redux Express JS app development.
+Amazing 3 months learning experience of indepth ES2015 new syntax and React Redux Express JS app development.
